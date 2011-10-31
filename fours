@@ -1,0 +1,106 @@
+#!/bin/env python
+
+import sys
+import copy
+import random
+
+def error(str):
+    """Report an error and exit"""
+    print str
+    sys.exit(1)
+
+def roll(ndice):
+    """Roll N dice"""
+    dice = []
+    for ii in range(0, ndice):
+        dice.append(random.randrange(1, 7))
+    return dice
+
+def turn(nm, lcls):
+    """Run a players full turn"""
+
+    # Start with an empty kept array.
+    kept = []
+
+    # Start with score of 0.
+    score = 0
+
+    # Start with 5 dice.
+    ndice = 5
+
+    # Player keeps going till all dice are kept.
+    while ndice > 0:
+
+        # Roll the dice
+        rack = roll(ndice)
+
+        # Pass copies of the arrays to prevent cheating.
+        rtmp = copy.deepcopy(rack)
+        ktmp = copy.deepcopy(kept)
+
+        # Call the player to choose keepers.
+        pulled = lcls['choose'](rtmp, ktmp)
+
+        # Print what happened.
+        print nm + ": " + str(rack) + \
+            " -> " + str(pulled),
+
+        # RULE - you must choose something.
+        if len(pulled) == 0:
+            error("empty choice")
+
+        # Remove the chosen elements from the rack and add to kept.
+        while len(pulled):
+            vv = pulled.pop()
+            try:
+                rack.remove(vv)
+            except ValueError, ex:
+                error("non-existent value " + str(vv))
+
+            # Inserting at the beginning of the kept looks nicer.
+            kept.insert(0, vv)
+
+            # Update the score.
+            if vv != 4:
+                score += vv
+
+            # One less die in the rack.
+            ndice -= 1
+
+        # Print the kept and the score at the end of the line.
+        print '-> ' + str(kept) + ': ' + str(score)
+    
+    # When we're all done, return the score.
+    return score
+        
+
+if __name__ == "__main__":
+
+    def median(vals):
+        vals.sort()
+        if len(vals) % 2 == 1:
+            return vals[(len(vals)+1)/2-1]
+        else:
+            lower = vals[len(vals)/2-1]
+            upper = vals[len(vals)/2]
+            return (float(lower + upper)) / 2  
+
+    prog1 = sys.argv[1];
+
+    # Read player1's definitions.
+    globals1 = {}
+    locals1 = {}
+    execfile(prog1, globals1, locals1)
+
+    nturns = 10000
+    scores = []
+    sum = 0
+    for ii in range(0, nturns):
+        score = turn(prog1, locals1)
+        scores.append(score)
+        sum += score
+        print ""
+
+    print "average score is %.3f" % (float(sum) / float(nturns))
+    print "median score is %.3f" % (median(scores))
+
