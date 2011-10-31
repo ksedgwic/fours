@@ -24,3 +24,6 @@ Example run:
     average score is 6.129
     median score is 6.000
 
+
+Take a look at the simple.py strategy and see if you can
+do better!
