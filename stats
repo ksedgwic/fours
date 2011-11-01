@@ -28,7 +28,7 @@ if __name__ == "__main__":
     scores = []
     sum = 0
     for ii in range(0, nturns):
-        score = fours.turn(prog1, locals1)
+        score = fours.turn(prog1, locals1, -1)
         scores.append(score)
         sum += score
         print ""

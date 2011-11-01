@@ -38,16 +38,18 @@ def turn(nm, lcls, pscore):
         rtmp = copy.deepcopy(rack)
         ktmp = copy.deepcopy(kept)
 
+        # Print the rack
+        print nm + ": " + str(rack) + ' ' + str(kept) + ' ->',
+
         # Call the player to choose keepers.
         pulled = lcls['choose'](rtmp, ktmp, pscore)
-
-        # Print what happened.
-        print nm + ": " + str(rack) + \
-            " -> " + str(pulled),
 
         # RULE - you must choose something.
         if len(pulled) == 0:
             error("empty choice")
+
+        # Print the returned value.
+        print str(pulled) + ' : ',
 
         # Remove the chosen elements from the rack and add to kept.
         while len(pulled):
@@ -68,8 +70,11 @@ def turn(nm, lcls, pscore):
             # One less die in the rack.
             ndice -= 1
 
+        # Print the returned value.
+        print str(score)
+
         # Print the kept and the score at the end of the line.
-        print '-> ' + str(kept) + ': ' + str(score)
+        # print '-> ' + str(kept) + ': ' + str(score)
     
     # When we're all done, return the score.
     return score
