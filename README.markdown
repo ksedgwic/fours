@@ -46,7 +46,7 @@ Example run:
 Human Player
 ----------------------------------------------------------------
 
-You can play manually in place of on of the prrograms:
+You can play manually in place of one of the scripts:
 
     ./fours simple.py human.py
     simple.py: [5, 4, 1, 5, 4] [] -> [4, 4] :  0
