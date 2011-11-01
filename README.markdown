@@ -1,6 +1,18 @@
 Fours
 ----------------------------------------------------------------
 
+The fours program runs a simple game cycle:
+
+    [ksedgwic@lap3 fours]$ ./fours simple.py simple.py 
+    simple.py: [1, 4, 6, 1, 3] -> [4] -> [4]: 0
+    simple.py: [6, 2, 2, 6] -> [2] -> [2, 4]: 2
+    simple.py: [6, 5, 4] -> [4] -> [4, 2, 4]: 2
+    simple.py: [6, 6] -> [6] -> [6, 4, 2, 4]: 8
+    simple.py: [4] -> [4] -> [4, 6, 4, 2, 4]: 8
+
+    simple.py: [1, 5, 1, 2, 4] -> [4] -> [4]: 0
+    simple.py: [6, 6, 1, 1] -> [1, 1] -> [1, 1, 4]: 2
+    simple.py: [4, 4] -> [4, 4] -> [4, 4, 1, 1, 4]: 2
 
 
 Stats
