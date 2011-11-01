@@ -1,0 +1,38 @@
+#!/bin/env python
+
+import sys
+import copy
+import random
+
+import fours
+
+if __name__ == "__main__":
+
+    def median(vals):
+        vals.sort()
+        if len(vals) % 2 == 1:
+            return vals[(len(vals)+1)/2-1]
+        else:
+            lower = vals[len(vals)/2-1]
+            upper = vals[len(vals)/2]
+            return (float(lower + upper)) / 2  
+
+    prog1 = sys.argv[1];
+
+    # Read player1's definitions.
+    globals1 = {}
+    locals1 = {}
+    execfile(prog1, globals1, locals1)
+
+    nturns = 10000
+    scores = []
+    sum = 0
+    for ii in range(0, nturns):
+        score = fours.turn(prog1, locals1)
+        scores.append(score)
+        sum += score
+        print ""
+
+    print "average score is %.3f" % (float(sum) / float(nturns))
+    print "median score is %.3f" % (median(scores))
+

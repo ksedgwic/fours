@@ -1,5 +1,5 @@
 
-def choose(rack, kept):
+def choose(rack, kept, prevscore):
 
     pull = []
 

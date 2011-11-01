@@ -1,5 +1,9 @@
-
 Fours
+----------------------------------------------------------------
+
+
+
+Stats
 ----------------------------------------------------------------
 
 Currently the program runs 10K turns and tabulates the average
@@ -7,7 +11,7 @@ and median scores.
 
 Example run:
 
-    ./fours simple.py
+    ./stats simple.py
 
     ... [lots bobitted] ...
 
